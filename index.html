@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sistema prenotazione poltrone cinema</title>
+        <style>
+            /*
+                Ridimensionamento immagini poltrone
+            */
+            img.poltrone{
+                width: 5%;
+                height: 5%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Prenotazioni</h1>
+        <p>
+            Fai click su una poltrona per prenotarla;
+            un ulteriore click per liberarla.
+        </p>
+        <script>
+            // Funzione per prenotare / liberare una poltrona
+            function prenotaLibera(idPoltrona){
+                let poltrona = document.getElementById(idPoltrona);
+                if (poltrona.getAttribute("src") == "img/poltronaNera.png"){
+                    poltrona.src = "img/poltronaRossa.png";
+                } else{
+                    poltrona.src = "img/poltronaNera.png";
+                }
+            }
+
+            // Creazione griglia di poltrone
+            let k = 1;
+            for (let i = 0; i < 10; i++){
+                for (let j = 0; j < 20; j++){
+                    let poltrona = document.createElement("img");
+                    poltrona.src = "img/poltronaNera.png";
+                    poltrona.alt = "poltronaNera";
+                    poltrona.setAttribute("class", "poltrone");
+                    let idPoltrona = "poltrona" + k;
+                    poltrona.setAttribute("onClick", "prenotaLibera(" + '"' + idPoltrona + '")');
+                    poltrona.id = idPoltrona;
+                    k++;
+                    document.body.appendChild(poltrona);
+                }
+                document.body.innerHTML += "<br>";
+            }
+        </script>
+    </body>
+</html>
